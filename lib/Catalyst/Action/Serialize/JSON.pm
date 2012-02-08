@@ -16,7 +16,7 @@ has encoder => (
 
 sub _build_encoder {
    my $self = shift;
-   return JSON->new->utf8->convert_blessed;
+   return JSON->new->convert_blessed;
 }
 
 sub execute {
