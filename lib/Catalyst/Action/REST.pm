@@ -158,7 +158,8 @@ sub _return_not_implemented {
     $c->response->body( "Method "
           . $c->request->method
           . " not implemented for "
-          . $c->uri_for( $method_name ) );
+          . $c->req->uri );
+    $c->log->debug( "Not implemented for: " . $c->uri_for( $method_name ) ) if $c->debug;
 }
 
 __PACKAGE__->meta->make_immutable;
