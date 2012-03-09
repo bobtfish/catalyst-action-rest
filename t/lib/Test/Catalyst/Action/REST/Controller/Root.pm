@@ -58,6 +58,13 @@ sub notreally_GET {
     $c->forward('ok');
 }
 
+sub notreally_TeSt : Local {
+    my ( $self, $c ) = @_;
+
+    $c->stash->{'entity'} = "notreally test";
+    $c->forward('ok');
+}
+
 sub not_implemented : Local : ActionClass('REST') {
 }
 

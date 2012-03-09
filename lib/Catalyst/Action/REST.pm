@@ -137,7 +137,7 @@ sub _get_allowed_methods {
     my ( $self, $controller, $c, $name ) = @_;
     my $class = ref($controller) ? ref($controller) : $controller;
     my $methods = Class::Inspector->methods($class);
-    return map { /^$name\_(.+)$/ } @$methods;
+    return map { /^$name\_([^[:lower:]]+)$/ } @$methods;
 };
 
 sub _return_options {
