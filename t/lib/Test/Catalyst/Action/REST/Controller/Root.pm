@@ -75,7 +75,7 @@ sub not_implemented_not_implemented {
     $c->forward('ok');
 }
 
-sub default_not_implemented : Path('/default/not_implemented') : ActionClass('REST') {
+sub default_not_implemented : Path('/default/not_implemented') : Args(2) : ActionClass('REST') {
 }
 
 sub not_modified : Local : ActionClass('REST') { }

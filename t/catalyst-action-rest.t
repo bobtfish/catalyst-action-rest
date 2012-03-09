@@ -53,11 +53,11 @@ is(
     "not_implemented handler had proper response"
 );
 
-my $ni_def_res = request( $t->delete( url => '/default/not_implemented' ) );
+my $ni_def_res = request( $t->delete( url => '/default/not_implemented/a/b' ) );
 is( $ni_def_res->code, 405, "Default not_implemented handler succeeded" );
 like(
     $ni_def_res->content,
-    qr|Method.*?http://.*?/default/not_implemented$|, 
+    qr|Method.*?http://.*?/default/not_implemented/a/b$|, 
     "Default not_implemented handler had proper path for response"
 );
 
