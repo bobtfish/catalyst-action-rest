@@ -137,7 +137,7 @@ sub _get_allowed_methods {
     my ( $self, $controller, $c, $name ) = @_;
     my $class = ref($controller) ? ref($controller) : $controller;
     my $methods = Class::Inspector->methods($class);
-    return map { /^$name\_(.+)$/ } @$methods;
+    return map { /^$name\_([^[:lower:]]+)$/ } @$methods;
 };
 
 sub _return_options {
@@ -158,7 +158,8 @@ sub _return_not_implemented {
     $c->response->body( "Method "
           . $c->request->method
           . " not implemented for "
-          . $c->uri_for( $method_name ) );
+          . $c->req->uri );
+    $c->log->debug( "Not implemented for: " . $c->uri_for( $method_name ) ) if $c->debug;
 }
 
 __PACKAGE__->meta->make_immutable;

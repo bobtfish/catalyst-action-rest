@@ -58,6 +58,13 @@ sub notreally_GET {
     $c->forward('ok');
 }
 
+sub notreally_TeSt : Local {
+    my ( $self, $c ) = @_;
+
+    $c->stash->{'entity'} = "notreally test";
+    $c->forward('ok');
+}
+
 sub not_implemented : Local : ActionClass('REST') {
 }
 
@@ -73,6 +80,9 @@ sub not_implemented_not_implemented {
 
     $c->stash->{'entity'} = "Not Implemented Handler";
     $c->forward('ok');
+}
+
+sub default_not_implemented : Path('/default/not_implemented') : Args(2) : ActionClass('REST') {
 }
 
 sub not_modified : Local : ActionClass('REST') { }
