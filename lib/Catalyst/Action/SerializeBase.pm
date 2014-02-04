@@ -126,7 +126,14 @@ sub _load_content_plugins {
         } elsif ($c->request->accept_only) {
             $c->response->header( 'Vary' => 'Accept' );
         }
+
         $c->response->content_type($content_type);
+    }
+
+    if ( $config->{'encoding'} ) {
+        my $res_content_type = $c->response->content_type;
+        $res_content_type .= '; charset=' . $config->{'encoding'};
+        $c->response->content_type( $res_content_type );
     }
 
     return $sclass, $sarg, $content_type;
